@@ -46,7 +46,7 @@ app.get('/workshop/:name', function(req, res) {
   const workshopName = req.params.name;
   InMemoryWorkshop.getWorkshopByName(workshopName)
       .then((workshop) => {
-        res.render('ejs/workshop', workshop);
+        res.render('viewWorkshop', {workshop: workshop});
       })
       .catch((e) =>ejs.send(e.message));
 });
@@ -56,7 +56,18 @@ app.post('/remove-workshop', function(req, res) {
 });
 
 app.post('/update-workshop', function(req, res) {
-  res.status(500).send('TODO');
+  const oldName = req.body.oldName;
+  const name = req.body.name;
+  const description = req.body.description;
+  InMemoryWorkshop.updateWorkshop(oldName, name, description).then(() => {
+    InMemoryWorkshop.getWorkshopList()
+        .then((workshops) => {
+          res.render('index', {
+            workshops: workshops,
+          });
+        });
+  })
+      .catch((e) =>res.send(e.message));
 });
 
 app.listen(3000, function() {
