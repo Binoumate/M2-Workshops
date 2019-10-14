@@ -2,16 +2,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <% include ./head %>
 </head>
 <body class="container">
 
   <form action="/update-workshop" method="post">
     <div class="form-group">
         <label for="name">Name :</label>
-        <input type="text" id="name" name="name" class="form-control" id="name"  value="<%= workshop.name %>" required>
+        <input type="text" id="name" name="name" class="form-control" value="<%= workshop.name %>" required>
     </div>
     <div class="form-group">
-      <input type="text" id="oldName" name="oldName" class="form-control" id="name" value="<%= workshop.name %>" hidden>
+      <input type="text" id="oldName" name="oldName" class="form-control"value="<%= workshop.name %>" hidden>
     </div>
     <div class="form-group">
         <label for="description">Description :</label>
