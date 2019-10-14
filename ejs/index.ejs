@@ -18,9 +18,14 @@
 <% workshops.forEach(function(workshop) { %>
     <li class="media my-4">
         <div class="media-body">
-            <h5 class="mt-0 mb-1"><%= workshop.name %></h5>
-            <%= workshop.description %>        </div>
-            <a type="button" href="/workshop/<%= workshop.name %>" class="btn btn-success btn-lg">Edit</a>   
+                <h5 class="mt-0 mb-1"><%= workshop.name %></h5>
+                <%= workshop.description %>
+        </div>
+        <form action="/remove-workshop%>" method="post">
+            <input type="text" name="name" class="form-control" value="<%= workshop.name %>" hidden>
+            <a type="button" href="/workshop/<%= workshop.name %>" class="btn btn-success btn-lg">Edit</a>
+            <button type="submit" class="btn btn-success btn-lg">Remove</a>
+        </form>
     </li>
 <% }); %>
 </ul>
